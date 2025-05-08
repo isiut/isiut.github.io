@@ -244,8 +244,21 @@ const elementAbbrs = [
 
 const a = 238;
 const z = 92;
-
 const str = elementNames[z] + " - " + a;
 
 const main = document.getElementById("main");
-main.textContent = str;
+
+function alpha() {
+  a = a - 4;
+  z = z - 2;
+
+  str = elementNames[z] + " - " + a;
+  main.textContent = str;
+}
+
+function beta_minus() {
+  z = z + 1;
+
+  str = elementNames[z] + " - " + a;
+  main.textContent = str;
+}
