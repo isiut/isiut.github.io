@@ -4,11 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nuclear Decay</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <p id="main">Test</p>
-    <button id="alpha" onclick="alpha()">α</button>
-    <button id="betaMinus" onclick="betaMinus()">β-</button>
+    <div class="container">
+      <label>Starting Isotope:</label>
+      <select name="Common Isotopes" id="commonIsotopes">
+        <option value="Uranium-235">Uranium-235</option>
+        <option value="Uranium-238">Uranium-238</option>
+        <option value="Cesium-137">Cesium-137</option>
+        <option value="Cobalt-60">Cobalt-60</option>
+      </select>
+      <br /><br />
+      <div class="nucleusContainer">
+        <p id="nuclearNotation"></p>
+        <span id="nucleus"></span>
+      </div>
+      <br />
+      <p id="main">Test</p>
+      <p id="decayRatios"></p>
+      <div class="buttons">
+        <button id="alpha" onclick="alpha()">α</button>
+        <button id="betaMinus" onclick="betaMinus()">β-</button>
+        <button id="betaPlus" onclick="betaPlus()">β+</button>
+      </div>
+      <p id="decayMessage"></p>
+    </div>
     <script type="text/javascript" src="./index.js"></script>
   </body>
 </html>

@@ -1,0 +1,59 @@
+#nucleus {
+  background-color: rgb(187, 187, 187);
+  border-radius: 50%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.nucleusContainer {
+  display: grid;
+}
+
+#nuclearNotation {
+  position: absolute;
+  top: 37%;
+  left: 48%;
+  transform: translate(-50%, calc(-50% - var(--offset-height, 0px)));
+  text-align: center;
+  font-size: 3vh;
+}
+
+.nucleusContainer {
+  position: relative;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5px, -5px);
+  }
+  50% {
+    transform: translate(5px, 5px);
+  }
+  75% {
+    transform: translate(-5px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
