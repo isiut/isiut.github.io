@@ -346,37 +346,59 @@ function createParticleAnimation(particleType, color, label) {
 }
 
 function alpha() {
-  a = a - 4;
-  z = z - 2;
+  decayMessage.style.color = "red";
+  const decayModeArr = decayModes();
+  if (decayModeArr[0] == 0) {
+    decayMessage.innerHTML = `This decay mode is not possible for ${isotopeNameText}`;
+  } else {
+    a = a - 4;
+    z = z - 2;
 
-  decayMessage.innerHTML =
-    "α particle emitted: <br>- Protons: 2 <br>- Neutrons: 2";
+    decayMessage.innerHTML =
+      "α particle emitted: <br>- Protons: 2 <br>- Neutrons: 2";
 
-  createParticleAnimation("alpha", "red", "α");
-  updateScreen();
+    createParticleAnimation("alpha", "red", "α");
+    updateScreen();
+  }
 }
 
 function betaMinus() {
-  z = z + 1;
+  decayMessage.style.color = "blue";
+  const decayModeArr = decayModes();
+  if (decayModeArr[1] == 0) {
+    decayMessage.innerHTML = `This decay mode is not possible for ${isotopeNameText}`;
+  } else {
+    z = z + 1;
 
-  decayMessage.innerHTML =
-    "β⁻ particle emitted: <br>- Electrons: 1 <br>- Antineutrinos: 1";
+    decayMessage.innerHTML =
+      "β⁻ particle emitted: <br>- Electrons: 1 <br>- Antineutrinos: 1";
 
-  createParticleAnimation("beta-minus", "blue", "β⁻");
-  updateScreen();
+    createParticleAnimation("beta-minus", "blue", "β⁻");
+    updateScreen();
+  }
 }
 
 function betaPlus() {
-  z = z - 1;
+  decayMessage.style.color = "green";
+  const decayModeArr = decayModes();
+  if (decayModeArr[2] == 0) {
+    decayMessage.innerHTML = `This decay mode is not possible for ${isotopeNameText}`;
+  } else {
+    z = z - 1;
+    decayMessage.innerHTML =
+      "β⁺ particle emitted: <br>- Positrons: 1 <br>- Neutrinos: 1";
 
-  decayMessage.innerHTML =
-    "β⁺ particle emitted: <br>- Positrons: 1 <br>- Neutrinos: 1";
-
-  createParticleAnimation("beta-plus", "green", "β⁺");
-  updateScreen();
+    createParticleAnimation("beta-plus", "green", "β⁺");
+    updateScreen();
+  }
 }
 
 function decayModes() {
+  if (!elementAbbr[z] || !decays[`${elementAbbr[z]}-${a}`]) {
+    console.error(`Invalid decay key: ${elementAbbr[z]}-${a}`);
+    return [0, 0, 0, 0];
+  }
+
   const decayKey = `${elementAbbr[z]}-${a}`;
   const decayMode = decays[decayKey] || [0, 0, 0, 0];
   console.log(decayKey);
@@ -400,12 +422,16 @@ function updateScreen() {
 
   if (!stable) {
     Array.from(nucleusContainer).forEach((container) => {
+      container.style.border = "5px solid yellow";
+      container.style.borderRadius = "50%";
+
       container.style.animation = "shake 0.5s infinite";
       container.style.position = "relative";
       container.style.top = "0"; // Reset any unintended offsets
     });
   } else {
     Array.from(nucleusContainer).forEach((container) => {
+      container.style.border = "5px solid black";
       container.style.animation = "";
     });
   }
